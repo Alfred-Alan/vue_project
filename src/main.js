@@ -6,6 +6,14 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+import QS from 'qs'
+Vue.prototype.qs = QS;
+
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

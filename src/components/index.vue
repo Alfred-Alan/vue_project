@@ -38,14 +38,14 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                <a class="" href="javascript:;">工单系统 </a>
+                <a class="" href="javascript:;"> <span style="margin-left:-10px;"><i class="layui-icon" >&#xe665;</i>&nbsp;</span>工单系统 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">工单类型</a></dd>
+                    <dd><a href="javascript:;" @click="chick_url('/work_order')">工单类型</a></dd>
                     <dd><a href="javascript:;">新建工单类型</a></dd>
                     <dd><a href="javascript:;">工单工作台</a></dd>
                 </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">新建工单</a></li>
+                <li class="layui-nav-item"><a href="javascript:;" @click="chick_url('/add_order')">新建工单</a></li>
             </ul>
             </div>
         </div>
@@ -53,7 +53,9 @@
         <div class="layui-body">
             <!-- 内容主体区域 -->
             <div style="padding: 15px;">
-		       <iframe :src="frame_src" frameborder="0"></iframe>
+                <div class="test">
+		            <iframe :src="frame_src" frameborder="0" width="1615px"  height="808px"></iframe>
+               </div>
 	        </div>
         </div>
         
@@ -74,13 +76,17 @@ export default {
     }
   },
   mounted(){
-    // 
-    layui.use('element', function(){
-		  var element = layui.element
-	})
+    //  使用layui
+    layui.use(['element','form'], function(){
+        var element = layui.element
+        var form = layui.form;
+    })
   },
   methods:{
-      
+    chick_url(url){
+        this.frame_src = url
+
+    },
   }
 }
 </script>
@@ -88,5 +94,7 @@ export default {
 .layui-header{
     margin-top: -60px;
 }
+
+/* html { overflow-x:hidden; } */
 </style>
-asasasas
+
