@@ -4,7 +4,8 @@ import index from '@/components/index'
 import work_order from '@/components/work_order'
 import add_order from '@/components/add_order'
 import get_order from '@/components/get_order'
-
+import login from '@/components/login'
+import register from '@/components/register'
 Vue.use(Router)
 
 export default new Router({
@@ -14,6 +15,14 @@ export default new Router({
       path: '/',
       name: 'index',
       component: index
+    },{
+      path: '/register',
+      name: 'register',
+      component: register
+    },{
+      path: '/login',
+      name: 'login',
+      component: login
     },{
       path: '/work_order',
       name: 'work_order',
