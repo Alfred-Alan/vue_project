@@ -2,7 +2,8 @@
  <div>
 
     <div class="layui-layout layui-layout-admin">
-        <myheader></myheader>
+      <!-- 监听子组件发送的信息 -->
+        <myheader v-on:frame_change="chick_url"></myheader>
     
         <div class="layui-side layui-bg-black">
             <div class="layui-side-scroll">
@@ -41,11 +42,12 @@
 </template>
 <script>
 import myheader from './header.vue'
+import {config,set_frame_src} from '../config.js'
 export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      frame_src:''
+      frame_src:config.frame_src,
     }
   },
     //注册组件标签
@@ -61,8 +63,9 @@ export default {
   },
   methods:{
     chick_url(url){
-        this.frame_src = url
-
+      this.frame_src = url
+        // var resurl=set_frame_src(url)
+        // this.frame_src = resurl
     },
   }
 }

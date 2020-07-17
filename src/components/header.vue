@@ -17,8 +17,8 @@
             </li>
             </ul>
             <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item">
-                <div v-if="username">
+            <li class="layui-nav-item"  v-if="username" >
+                <div>
                     <a href="javascript:;">
                         <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
                         贤心
@@ -29,8 +29,16 @@
                         <dd><a href="">Logout</a></dd>
                     </dl>
                 </div>
-                <div v-else>
-                    <a href="">Login</a>
+
+            </li>
+            <li class="layui-nav-item"  v-else >
+                <div>
+                    <a href="javascript:;" @click="chick_url('/login')">Login</a>
+                </div>
+            </li> 
+            <li class="layui-nav-item" >
+                <div>
+                    <a href="javascript:;" @click="chick_url('/register')">Register</a>
                 </div>
             </li>
             </ul>
@@ -39,15 +47,25 @@
 </template>
 
 <script>
+import {config,set_frame_src} from '../config.js'
 export default {
     data(){
         return{
             username:sessionStorage.getItem('username'),
+            frame_src:config.frame_src,
         }
     },
+    methods:{
+        chick_url(url){
+            // 子组件向父页面传递信息
+            this.$emit('frame_change',url)
+        }
+    }
 }
 </script>
 
 <style>
-
+.layui-layout-right{
+    margin-right: 10px;
+}
 </style>

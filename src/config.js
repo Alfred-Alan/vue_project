@@ -6,13 +6,19 @@ export const config = {
     // baseurl:'http://'+config.host+":"+config.port,
     mystr:'123',
     secret:'201528',
+    frame_src:'/login',
     // request_url:'http://'+host+":"+port,
+
   }
   export const config2= {
     baseurl:'http://'+config.host+":"+config.port,
 
   }
-
+  export function set_frame_src(url){
+    config.frame_src = url
+    return config.frame_src
+    
+  }
   //函数的定义
   export function formatXml(text) {
   　　return text
