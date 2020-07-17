@@ -85,7 +85,7 @@
 
                     </table>
                 </div>
-
+                <p><button @click="test">test</button></p>
             </div>
         </div>
 
@@ -95,7 +95,7 @@
 
 <script>
 import axios from 'axios'
-import {config2} from '../config.js'
+import {config2,get_request} from '../config.js'
 export default {
     data(){
         return{
@@ -150,6 +150,11 @@ export default {
             }else{
                 return false 
             }
+        },
+        test(){
+            console.log(1234)
+            var res=get_request('/register/',{'123':123})
+            console.log(res)
         }
     }
 }
