@@ -46,6 +46,7 @@
                 </dl>
                 </li>
                 <li class="layui-nav-item"><a href="javascript:;" @click="chick_url('/add_order')">新建工单</a></li>
+                <li class="layui-nav-item"><a href="javascript:;" @click="chick_url('/get_order')">领取工单</a></li>
             </ul>
             </div>
         </div>

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import index from '@/components/index'
 import work_order from '@/components/work_order'
 import add_order from '@/components/add_order'
+import get_order from '@/components/get_order'
 
 Vue.use(Router)
 
@@ -21,6 +22,10 @@ export default new Router({
       path: '/add_order',
       name: 'add_order',
       component: add_order
+    },{
+      path: '/get_order',
+      name: 'get_order',
+      component: get_order
     },
   ]
 })
