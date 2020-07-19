@@ -20,11 +20,11 @@
                         <div class="layui-input-block">
                             <select name="order_type" id="order_type" lay-verify="required"  lay-search>
                                 <option value="">请选择</option>
-                                <option value="0">北京</option>
-                                <option value="1">上海</option>
-                                <option value="2">广州</option>
-                                <option value="3">深圳</option>
-                                <option value="4">杭州</option>
+                                <option value="北京">北京</option>
+                                <option value="上海">上海</option>
+                                <option value="广州">广州</option>
+                                <option value="深圳">深圳</option>
+                                <option value="杭州">杭州</option>
                             </select>
                         </div>
                     </div>
@@ -34,8 +34,8 @@
                         <div class="layui-input-block">
                             <select name="city" id="department" lay-verify="required"  lay-search>
                                 <option value="">请选择</option>
-                                <option value="0">产品研发部</option>
-                                <option value="1">Co部门</option>
+                                <option value="产品研发部">产品研发部</option>
+                                <option value="Co部门">Co部门</option>
                             </select>
                         </div>
                     </div>
