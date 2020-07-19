@@ -45,7 +45,7 @@
                 </div>
                 <div>
                     <div style="float:left;margin-left:30px">
-                        <button type="button" class="layui-btn layui-btn-normal" lay-submit @click="search" >&emsp;&emsp;<b>搜索</b>&emsp;&emsp;</button>
+                        <button type="button" class="layui-btn layui-btn-normal" lay-submit @click="search">&emsp;&emsp;<b>搜索</b>&emsp;&emsp;</button>
                     </div>
                 </div>
                     <br>
@@ -64,17 +64,22 @@
                             <td>最后操作人</td>
                             <td>操作</td>
                         </tr>
-                        <tr style="height:100px;">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+                        <tr style="height:100px;" v-for="item in order_list">
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.status }}</td>
+                            <td>{{ item.order_type }}</td>
+                            <td>{{ item.accept_department }}</td>
                             <td>
-                                <p><a href="">禁用</a></p>
+                                优先级：{{ item.priority }}
+                                设备：{{ item.use_model }}
+                                软件：{{ item.application }}
+                            </td>
+                            <td>{{ item.create_time }}</td>
+                            <td>{{ item.update_time }}</td>
+                            <td>{{ item.Recipients }}</td>
+                            <td>
+                                <p><a href="javascript:;" @click="on_jy(item.id,1)" v-if="item.status == '启用'">禁用</a></p>
+                                <p><a href="javascript:;" @click="on_jy(item.id,0)" v-if="item.status == '禁用'">启用</a></p>
                                 <br>
                                 <p><a href="">编辑</a></p>
                             </td>
@@ -101,9 +106,12 @@ export default {
             order_type:'不限',
             order_type_obj:'不限',
             department:'',
+            order_list:[],
         }
     },
     mounted(){
+        //  获取数据
+        this.get_orders();
         //  使用layui
         layui.use(['element','form'], function(){
             var element = layui.element
@@ -111,6 +119,19 @@ export default {
         })
     },
     methods:{
+        //  禁用
+        on_jy:function(aid,num){
+            axios.get(config2.baseurl+'/get_update',{params:{'id':aid,'num':num}}).then(res=>{
+                console.log(res.data)
+            })
+        },
+        //  获取数据
+        get_orders:function(){
+            axios.get(config2.baseurl+'/get_orders').then(res=>{
+                console.log(res.data)
+                this.order_list = res.data.data
+            })
+        },
         select_depart(val){
             console.log(val)
         },
@@ -142,6 +163,10 @@ export default {
                     order_type_obj:this.order_type_obj
                 }
                  console.log(data,config2['baseurl'])
+                 axios.get(config2.baseurl+'/get_orders',{params:{'query':JSON.stringify([this.order_type_name,this.order_type,this.order_type_obj,this.department])}}).then(res=>{
+                console.log(res.data)
+                this.order_list = res.data.data
+            })
             }else{
                 return false
             }
