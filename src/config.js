@@ -1,7 +1,7 @@
 //常量的定义
 
 export const config = {
-    port:'8080',
+    port:'5000',
     host:'127.0.0.1',
     // baseurl:'http://'+config.host+":"+config.port,
     mystr:'123',
