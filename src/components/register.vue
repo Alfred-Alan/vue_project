@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import {config2, config} from "../config.js"
 export default {
     data(){
         return{
@@ -51,11 +52,26 @@ export default {
         })
     },
     methods:{
+
+        // 账号注册
         on_click:function(){
             if(this.password==this.password1){
                 console.log(this.username)
                 console.log(this.password)
                 console.log(this.password1)
+
+                this.axios({
+                    url:config2.baseurl+"/register/",
+                    method:'GET',
+                    params:{'username':this.username,'password':this.password}
+                }).then(res=>{
+                    console.log(res)
+                    if(res.data.code==200){
+                        alert('添加成功')
+                    }else{
+                        alert('添加失败')
+                    }
+                })
             }else{
                 layer.msg('密码不一致');
             }

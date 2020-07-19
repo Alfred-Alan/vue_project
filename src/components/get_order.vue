@@ -18,8 +18,8 @@
                         <div class="layui-input-block">
                             <select name="city" id="accept_department" lay-verify="required"  lay-search>
                                 <option value="">请选择</option>
-                                <option value="0">产品研发部</option>
-                                <option value="1">Co部门</option>
+                                <option value="产品研发部">产品研发部</option>
+                                <option value="Co部门">Co部门</option>
                             </select>
                         </div>
                     </div>
@@ -28,8 +28,8 @@
                         <div class="layui-input-block">
                             <select name="city" id="send_department" lay-verify="required"  lay-search>
                                 <option value="">请选择</option>
-                                <option value="0">产品研发部</option>
-                                <option value="1">Co部门</option>
+                                <option value="产品研发部">产品研发部</option>
+                                <option value="Co部门">Co部门</option>
                             </select>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                             <td>创建时间</td>
                             <td>操作</td>
                         </tr>
-                        <tr style="height:100px;">
+                        <tr style="height:100px;" v-for="(item,index) in msg_list" :key="index">
                             <td>
                                 <div style="width:80px;margin: 0 auto;">
                                     <div class="layui-form-item" >
@@ -72,9 +72,9 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.accept_department }}</td>
+                            <td>{{ item.create_time }}</td>
                             <td>
                                 <p><a href="">领取</a></p>
                                 <br>
@@ -94,15 +94,18 @@
 </template>
 
 <script>
-import axios from 'axios'
 import {config2,get_request} from '../config.js'
 export default {
     data(){
         return{
+            // 待领取工单
             about_me:'',
             accept_department:'',
             send_department:'',
             priority:'',
+
+            // 数据展示列
+            msg_list:[]
         }
     },
     mounted(){
@@ -132,7 +135,7 @@ export default {
         search(){
             var about_me=parseInt(this.getCheckBoxValue('about_me')[0])
             if(about_me){
-                this.about_me=about_me
+                this.about_me=localStorage.getItem('username')
             }else{
                 this.about_me = 0
             }
@@ -140,13 +143,22 @@ export default {
             this.send_department=this.getSelectValue('send_department')
             this.priority=this.getSelectValue('priority')
             if(this.accept_department!=''&& this.send_department!='' && this.priority!=''){
-                var data={
-                    about_me:this.about_me,
-                    accept_department:this.accept_department,
-                    send_department:this.send_department,
-                    priority:this.priority
-                }
+                var data = new FormData();
+                data.append("about_me", this.about_me)
+                data.append( "accept_department",this.accept_department)
+                data.append("send_department",this.send_department)
+                data.append("priority",this.priority)
+
                 console.log(data)
+                this.axios({
+                    url:config2.baseurl+"/get_work/",
+                    method:'POST',
+                    data:data
+                }).then(res=>{
+                    console.log(res.data.data)
+                    this.msg_list=res.data.data;
+
+                })
             }else{
                 return false 
             }
