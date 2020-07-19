@@ -9,6 +9,10 @@ Vue.config.productionTip = false
 import QS from 'qs'
 Vue.prototype.qs = QS;
 
+/*引入axios*/
+import Axios from 'axios'
+Vue.prototype.axios = Axios;
+
 import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
