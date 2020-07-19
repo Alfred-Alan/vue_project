@@ -112,6 +112,7 @@ export default {
             application:'',
             order_info:'',
             fileList: [ ],
+            img_names:[],
         }
     },
     mounted(){
@@ -141,6 +142,18 @@ export default {
               }         
              return "undefined";    
         } ,
+        make_blob(base64str){
+            //将base64 的数据弄到form表单中
+            // 将base64 的代码转化为二进制
+            let bytes = window.atob(base64str.split(',')[1]);
+            let ab = new ArrayBuffer(bytes.length);
+            let ia = new Int8Array(ab);
+            for (let i = 0; i < bytes.length; ++ i) {
+                ia[i] = bytes.charCodeAt(i);
+            }
+            let blob = new Blob([ia], {type: 'image/jpeg'});
+            return blob
+        },
         add(){
             this.department = this.getSelectValue('department')
             this.order_type = this.getSelectValue('order_type')
@@ -150,17 +163,43 @@ export default {
             
             // 判断字段是否为空 
             if(this.order_name!="" && this.order_type!=""&&this.department!=""&&this.priority!=""&&this.use_model!=""&& this.application!=""&& this.order_info!=""){
-                var data={
-                    order_name: this.order_name,
-                    order_type: this.order_type,
-                    department: this.department,
-                    priority: this.priority,
-                    use_model: this.use_model,
-                    application: this.application,
-                    order_info: this.order_info,
-                    fileList: this.fileList,
+                // var data={
+                //     order_name: this.order_name,
+                //     order_type: this.order_type,
+                //     department: this.department,
+                //     priority: this.priority,
+                //     use_model: this.use_model,
+                //     application: this.application,
+                //     order_info: this.order_info,
+                //     fileList: this.fileList,
+                // }
+                var formdata = new FormData()
+                formdata.append('order_name',this.order_name)
+                formdata.append('order_type',this.order_type)
+                formdata.append('department',this.department)
+                formdata.append('priority',this.priority)
+                formdata.append('use_model',this.use_model)
+                formdata.append('application',this.application)
+                formdata.append('order_info',this.order_info)
+
+                // 判断是否有图片
+                if(this.fileList){
+                    for(let i =0;i<this.fileList.length;i++){
+                        // console.log(this.fileList[i].file.name)
+                        // 名字列表添加进表单
+                        //  formdata.append('img_names',this.fileList[i].file.name)
+                        // 添加进表单
+                        formdata.append('file',this.make_blob(this.fileList[i].content),this.fileList[i].file.name)
+                    }
                 }
-                console.log(data)
+                
+
+                const config = {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                } 
+                axios.post(config2.baseurl+'/add_order',formdata,config).then(res=>{
+                    console.log(res.data)
+                })
             }else{
                 alert(123)
                 return false 
