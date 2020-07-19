@@ -2,7 +2,8 @@
 
 export const config = {
     port:'5000',
-    host:'127.0.0.1',
+    // host:'127.0.0.1',
+    host:'0.0.0.0',
     // baseurl:'http://'+config.host+":"+config.port,
     mystr:'123',
     secret:'201528',
