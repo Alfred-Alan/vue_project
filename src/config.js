@@ -12,7 +12,7 @@ export const config = {
 
   }
   export const config2= {
-    baseurl:'http://'+config.host+":"+config.port,
+    baseurl:'http://'+config.ip+":"+config.port,
     frame_src:'http://'+config.ip+":3000",
 
   }
