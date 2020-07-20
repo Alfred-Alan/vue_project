@@ -7,7 +7,7 @@ export const config = {
     // baseurl:'http://'+config.host+":"+config.port,
     mystr:'123',
     secret:'201528',
-    ip:'139.155.72.14'
+    ip:'47.105.205.151'
     // request_url:'http://'+host+":"+port,
 
   }
