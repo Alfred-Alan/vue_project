@@ -7,13 +7,15 @@ export const config = {
     // baseurl:'http://'+config.host+":"+config.port,
     mystr:'123',
     secret:'201528',
-    ip:'39.96.70.17'
+    // 后台请求ip 
+    ip:'39.96.70.17',
     // request_url:'http://'+host+":"+port,
-
+    // 前端本地ip
+    webip:'139.155.72.14',
   }
   export const config2= {
     baseurl:'http://'+config.ip+":"+config.port,
-    frame_src:'http://'+config.ip+":3000",
+    frame_src:'http://'+config.webip+":3000",
 
   }
   export function set_frame_src(url){
