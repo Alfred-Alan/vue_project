@@ -13,7 +13,7 @@ export const config = {
   }
   export const config2= {
     baseurl:'http://'+config.host+":"+config.port,
-    frame_src:'http://'+config.ip+":80",
+    frame_src:'http://'+config.ip+":3000",
 
   }
   export function set_frame_src(url){
