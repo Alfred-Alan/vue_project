@@ -7,12 +7,13 @@ export const config = {
     // baseurl:'http://'+config.host+":"+config.port,
     mystr:'123',
     secret:'201528',
-    frame_src:'/login',
+    ip:'192.168.43.183'
     // request_url:'http://'+host+":"+port,
 
   }
   export const config2= {
     baseurl:'http://'+config.host+":"+config.port,
+    frame_src:'http://'+config.ip+":8080",
 
   }
   export function set_frame_src(url){

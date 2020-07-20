@@ -47,12 +47,12 @@
 </template>
 
 <script>
-import {config,set_frame_src} from '../config.js'
+import {config2,set_frame_src} from '../config.js'
 export default {
     data(){
         return{
             username:sessionStorage.getItem('username'),
-            frame_src:config.frame_src,
+            frame_src:'',
         }
     },
     methods:{
