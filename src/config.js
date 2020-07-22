@@ -8,7 +8,7 @@ export const config = {
     mystr:'123',
     secret:'201528',
     // 后台请求ip 
-    ip:'39.96.70.17',
+    ip:'111.231.193.96',
     // request_url:'http://'+host+":"+port,
     // 前端本地ip
     webip:'139.155.72.14',
