@@ -14,7 +14,7 @@ export const config = {
     webip:'139.155.72.14',
   }
   export const config2= {
-    baseurl:'http://'+config.ip+":"+config.port,
+    baseurl:'http://'+config.ip+":80",
     frame_src:'http://'+config.webip+":3000",
 
   }
